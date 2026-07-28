@@ -4,7 +4,6 @@ using App.Services.Utils;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient(typeof(App.Services.Utils.Logger<>));
-builder.Services.AddTransient(typeof(ReturnType<>));
 
 builder.Services.AddHttpClient<PokeAPI>(client =>
 {
@@ -21,5 +20,7 @@ builder.Services.AddHttpClient<PokeAPI>(client =>
 builder.Services.AddControllers();
 
 var app = builder.Build();
+
+app.MapControllers();
 
 app.Run();

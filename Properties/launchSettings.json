@@ -8,7 +8,7 @@
       "applicationUrl": "http://localhost:5005",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "POKEAPIURL": "graphql.pokeapi.co/v1beta2"
+        "POKEAPIURL": "https://graphql.pokeapi.co/v1beta2"
       }
     },
     "https": {
@@ -18,7 +18,7 @@
       "applicationUrl": "https://localhost:7162;http://localhost:5005",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "POKEAPIURL": "graphql.pokeapi.co/v1beta2"
+        "POKEAPIURL": "https://graphql.pokeapi.co/v1beta2"
       }
     }
   }
