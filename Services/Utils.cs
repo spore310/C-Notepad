@@ -1,7 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Nodes;
 
 namespace App.Services.Utils;
 
@@ -23,11 +22,6 @@ public static class JSON
     {
         return JsonSerializer.Serialize(value, Default);
     }
-}
-
-public static class HttpOptions
-{
-    public class ParamDictionary : Dictionary<string, string?> { }
 }
 
 public class Logger<T>

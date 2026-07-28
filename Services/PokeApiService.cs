@@ -4,10 +4,12 @@ using App.Services.Utils;
 
 namespace App.Services.API;
 
-public sealed class PokeAPI(HttpClient _client)
+public sealed class PokeAPI(HttpClient _client, Utils.Logger<PokeAPI> _logger)
 {
     private readonly HttpClient client = _client;
-    private readonly Utils.Logger<PokeAPI> logger = new();
+    private readonly Utils.Logger<PokeAPI> logger = _logger;
+
+    private class ParamDictionary : Dictionary<string, string?>;
 
     private class Wrapper<T>
     {
@@ -36,7 +38,7 @@ public sealed class PokeAPI(HttpClient _client)
 
     private async Task<ReturnType<T>> FetchPokeGraphQl<T>(
         string Query,
-        HttpOptions.ParamDictionary Variables,
+        ParamDictionary Variables,
         CancellationToken CancelToken = default
     )
     {
