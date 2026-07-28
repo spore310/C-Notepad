@@ -21,5 +21,5 @@ public sealed class Pokemon
 
 public sealed class PokemonResponse
 {
-    public List<Pokemon> pokemon { get; set; } = [];
+    public List<Pokemon> Pokemon { get; set; } = [];
 }
