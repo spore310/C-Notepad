@@ -18,8 +18,6 @@ builder.Services.AddHttpClient<PokeAPI>(client =>
     client.Timeout = TimeSpan.FromMinutes(2);
 });
 
-builder.Services.AddScoped<PokeAPI>();
-
 builder.Services.AddControllers();
 
 var app = builder.Build();

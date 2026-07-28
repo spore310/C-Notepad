@@ -2,14 +2,28 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Net.Http.Headers;
 
 namespace App.Services.Utils;
 
-public static class JsonParseOptions
+public static class JSON
 {
     public static readonly JsonSerializerOptions Default = new(JsonSerializerDefaults.Web);
+
+    public static T? Parse<T>(string Data)
+    {
+        T data =
+            JsonSerializer.Deserialize<T>(Data, Default)
+            ?? throw new InvalidDataException("data should not be null");
+        return data;
+    }
+
+    public static string Stringify(JsonNode Object)
+    {
+        return Object.ToJsonString(Default);
+    }
 }
 
 public static class HttpOptions

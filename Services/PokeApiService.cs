@@ -46,15 +46,11 @@ public sealed class PokeAPI(HttpClient _client)
     {
         var requestBody = new { query = Query, variables = Variables };
 
-        string jsonBody = JsonSerializer.Serialize(requestBody);
-
-        using var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
-
         try
         {
             using HttpResponseMessage response = await client.PostAsJsonAsync(
                 "",
-                content,
+                requestBody,
                 CancelToken
             );
             response.EnsureSuccessStatusCode();
