@@ -1,10 +1,6 @@
-using System.ComponentModel;
 using System.Net;
-using System.Text;
-using System.Text.Json;
 using App.Models.Pokemon;
 using App.Services.Utils;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 namespace App.Services.API;
 
