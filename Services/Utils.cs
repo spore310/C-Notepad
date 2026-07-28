@@ -9,17 +9,15 @@ public static class JSON
 {
     public static readonly JsonSerializerOptions Default = new(JsonSerializerDefaults.Web);
 
-    public static T? Parse<T>(string Data)
+    public static T Parse<T>(string data)
     {
-        T data =
-            JsonSerializer.Deserialize<T>(Data, Default)
-            ?? throw new InvalidDataException("data should not be null");
-        return data;
+        return JsonSerializer.Deserialize<T>(data, Default)
+            ?? throw new InvalidDataException($"Unable to deserialize JSON into {typeof(T).Name}.");
     }
 
-    public static string Stringify(JsonNode Object)
+    public static string Stringify<T>(T value)
     {
-        return Object.ToJsonString(Default);
+        return JsonSerializer.Serialize(value, Default);
     }
 }
 
