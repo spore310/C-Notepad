@@ -1,12 +1,27 @@
-﻿using System;
+using App.Services.API;
+using App.Services.Utils;
 
-namespace QuizApp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddTransient(typeof(App.Services.Utils.Logger<>));
+builder.Services.AddTransient(typeof(ReturnType<>));
+
+builder.Services.AddHttpClient<PokeAPI>(client =>
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
-    }
-}
+    string? Url = Environment.GetEnvironmentVariable("POKEAPIURL");
+
+    if (string.IsNullOrWhiteSpace(Url))
+        throw new();
+
+    client.BaseAddress = new Uri(Url);
+
+    client.Timeout = TimeSpan.FromMinutes(2);
+});
+
+builder.Services.AddScoped<PokeAPI>();
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+
+app.Run();
