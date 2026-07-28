@@ -7,7 +7,11 @@ namespace App.Services.Utils;
 
 public static class JSON
 {
-    public static readonly JsonSerializerOptions Default = new(JsonSerializerDefaults.Web);
+    public static readonly JsonSerializerOptions Default = new(JsonSerializerDefaults.Web)
+    {
+        WriteIndented = true,
+        AllowTrailingCommas = true,
+    };
 
     public static T Parse<T>(string data)
     {

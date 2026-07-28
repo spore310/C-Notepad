@@ -47,6 +47,7 @@ public sealed class PokeAPI(HttpClient _client)
             using HttpResponseMessage response = await client.PostAsJsonAsync(
                 "",
                 requestBody,
+                JSON.Default,
                 CancelToken
             );
             response.EnsureSuccessStatusCode();
