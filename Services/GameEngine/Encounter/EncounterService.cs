@@ -5,11 +5,11 @@ namespace App.Services.GameEngine;
 static class EncounterService
 {
     public static int Encounter(
-        EncounterGroup group,
+        EncounterTable group,
         IEnumerable<IEncounterModifier>? modifiers = null
     )
     {
-        EncounterGroup result = group;
+        var result = group;
 
         int CumulativeWeight = 0;
 
@@ -37,5 +37,5 @@ static class EncounterService
 
 interface IEncounterModifier
 {
-    EncounterGroup Apply(EncounterGroup group);
+    EncounterTable Apply(EncounterTable group);
 }
