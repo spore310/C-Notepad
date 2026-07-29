@@ -1,5 +1,7 @@
 using App.Models.Pokemon.Encounter;
 
+namespace App.Services.GameEngine;
+
 static class EncounterService
 {
     public static int Encounter(
