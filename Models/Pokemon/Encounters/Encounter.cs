@@ -2,10 +2,20 @@ namespace App.Models.Pokemon.Encounter;
 
 readonly record struct Encounter(int PokedexId, int Weight);
 
-sealed class EncounterGroup(IEnumerable<Encounter> encounters)
+sealed class EncounterGroup
 {
-    public IReadOnlyList<Encounter> Encounters { get; } =
-    [.. encounters.OrderBy(encounter => encounter.Weight)];
+    public IReadOnlyList<Encounter> Encounters { get; }
+
+    public int TotalWeight { get; }
+
+    public EncounterGroup(IEnumerable<Encounter> encounters)
+    {
+        Encounter[] orderedEncounters = [.. encounters.OrderBy(encounter => encounter.Weight)];
+
+        Encounters = orderedEncounters;
+
+        TotalWeight = orderedEncounters.Sum(encounter => encounter.Weight);
+    }
 }
 
 sealed class Zone(string id, Dictionary<string, EncounterGroup> encounterGroups)
