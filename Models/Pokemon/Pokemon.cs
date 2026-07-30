@@ -18,9 +18,10 @@ public class Pokemon
     public required string ImageUrl
     {
         get =>
-            field
-            ?? $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{Id}.png";
+            string.IsNullOrEmpty(field)
+                ? $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{Id}.png"
+                : "assets/images/missingno.png";
         init;
-    } = $"/assets/images/missingno.png";
+    } = null;
     public required PokemonStat[] Stats { get; set; }
 }
