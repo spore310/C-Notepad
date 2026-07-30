@@ -5,6 +5,11 @@ using App.Models.Pokemon.Types;
 
 namespace App.Models.Pokemon;
 
+public enum PokemonConstants
+{
+    MAXNATIONALID = 1025,
+}
+
 public class Pokemon
 {
     [Key]
