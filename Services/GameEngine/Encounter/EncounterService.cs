@@ -1,4 +1,6 @@
 using App.Models.Pokemon.Encounter;
+using App.Models.Pokemon.Stats;
+using Microsoft.AspNetCore.Routing.Template;
 
 namespace App.Services.GameEngine;
 
@@ -32,6 +34,21 @@ static class EncounterService
             }
         }
         throw new InvalidOperationException("Encounter failed");
+    }
+
+    public static (string, int) GenPokemonStat(int level, PokemonMetaStat stat)
+    {
+        string Name = stat.Stat.Name;
+        int FinalValue = (int)Math.Round(new decimal(stat.BaseStat / 10)) * level;
+        if (FinalValue >= 301)
+        {
+            FinalValue = 300;
+        }
+        else if (FinalValue < 0)
+        {
+            FinalValue = 0;
+        }
+        return new(Name, FinalValue);
     }
 }
 

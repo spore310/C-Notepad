@@ -13,3 +13,8 @@ public class PokemonMetaStat
     public int BaseStat { get; set; }
     public required BaseStatEntry Stat { get; set; }
 }
+
+public class PokemonStat()
+{
+    public required int Value { get; set; }
+}

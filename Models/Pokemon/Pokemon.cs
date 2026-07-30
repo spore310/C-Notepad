@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using App.Models.Pokemon.Stats;
 using App.Models.Pokemon.Types;
+using App.Services.GameEngine;
 
 namespace App.Models.Pokemon;
 
@@ -38,20 +39,42 @@ public class PokemonMeta
     public string ImageUrl =>
         $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{Id}.png";
 
-    public required PokemonMetaStat[] Stats { get; set; }
-}
-
-class PokemonWild : PokemonMeta
-{
-    public required int Level { get; init; }
-
-    public PokemonWild((int MinLevel, int MaxLevel) levelOptions)
-    {
-        Level = Random.Shared.Next(levelOptions.MinLevel, levelOptions.MaxLevel + 1);
-    }
+    [JsonPropertyName("stats")]
+    public required PokemonMetaStat[] BaseStats { get; init; }
 }
 
 class PokemonMetaList(List<PokemonMeta> pokemons)
 {
     public required IReadOnlyList<PokemonMeta> Pokemon = pokemons;
+}
+
+class PokemonWild
+{
+    [Key]
+    public required int Id { get; set; }
+    public required string Name { get; set; } = string.Empty;
+    public required int Level { get; set; }
+
+    [JsonPropertyName("order")]
+    public required int SortOrder { get; init; }
+    public required string ImageUrl { get; init; }
+    public required IReadOnlyList<PokemonType> Types { get; init; }
+    protected Dictionary<string, PokemonStat> Stats { set; get; }
+
+    public PokemonWild(int level, PokemonMeta pokemon)
+    {
+        Id = pokemon.Id;
+        Name = pokemon.Name;
+        SortOrder = pokemon.SortOrder;
+        Level = level;
+        ImageUrl = pokemon.ImageUrl;
+        Types = [.. pokemon.Types.Select(type => type.Info)];
+        Dictionary<string, PokemonStat> newStats = [];
+        foreach (PokemonMetaStat stat in pokemon.BaseStats)
+        {
+            (string key, int value) = EncounterService.GenPokemonStat(level, stat);
+            newStats.Add(key, new() { Value = value });
+        }
+        Stats = newStats;
+    }
 }
