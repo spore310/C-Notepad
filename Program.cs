@@ -23,4 +23,6 @@ var app = builder.Build();
 
 app.MapControllers();
 
+app.MapStaticAssets();
+
 app.Run();
