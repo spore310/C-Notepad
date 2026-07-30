@@ -4,6 +4,8 @@ readonly record struct GuaranteedItemDrop(int ItemId);
 
 readonly record struct WeightedItemDrop(int ItemId, int Weight);
 
+readonly record struct LevelCap(int MinLevel, int MaxLevel);
+
 sealed class Encounter(int pokedexId, int weight, IEnumerable<WeightedItemDrop> itemDrops)
 {
     public int PokedexId { get; } = pokedexId;
