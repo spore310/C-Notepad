@@ -1,4 +1,20 @@
-#Current Zone Object
+| Section             |                                 Description                                  |       Test Text |
+| :------------------ | :--------------------------------------------------------------------------: | --------------: |
+| GetAllPokemonMeta   |                             string graphql query                             |  [Link](#first) |
+| Current Zone Object | representation of the zone levels and stages object to be loaded into memory | [Link](#second) |
+| Desired Zone Object |   desired result of iterative work on zones from **#Current Zone Object**    |  [Link](#third) |
+
+#Current Graphql query for GetAllPokemonMeta
+<a id="first"></a>
+
+> Suppose to obtain all the metadat from pokeapi external graphql api to then store in game data
+>
+> To be stored on disk then loaded into memory for faster pokemon meta lookup
+
+---
+
+#Current Zone Object [Link To Desired](#third)
+<a id="second"></a>
 
 ```c#
 
@@ -18,7 +34,8 @@
 
 ```
 
-#Desired Zone Object
+#Desired Zone Object [Link To Second](#second)
+<a id="third"></a>
 
 ```c#
 

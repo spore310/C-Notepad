@@ -7,7 +7,7 @@ public sealed class BaseStatEntry
     public required string Name { get; set; }
 }
 
-public sealed class PokemonStat
+public class PokemonMetaStat
 {
     [JsonPropertyName("base_stat")]
     public int BaseStat { get; set; }
