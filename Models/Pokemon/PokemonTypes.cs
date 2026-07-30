@@ -10,7 +10,5 @@ public sealed class PokemonType
 
 public sealed class PokemonTypeSlot
 {
-    public int Slot { get; set; }
-
-    public required PokemonType Type { get; set; }
+    public required PokemonType Info { get; set; }
 }

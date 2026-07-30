@@ -18,15 +18,11 @@ public class Pokemon
 
     [JsonPropertyName("order")]
     public required int SortOrder { get; set; }
-    public required PokemonType[] Types { get; set; }
 
-    public required string ImageUrl
-    {
-        get =>
-            string.IsNullOrEmpty(field)
-                ? $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{Id}.png"
-                : "assets/images/missingno.png";
-        init;
-    } = null;
+    public required PokemonTypeSlot[] Types { get; set; }
+
+    public string ImageUrl =>
+        $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{Id}.png";
+
     public required PokemonStat[] Stats { get; set; }
 }
