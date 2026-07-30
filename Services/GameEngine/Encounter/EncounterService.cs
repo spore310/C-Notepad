@@ -1,6 +1,7 @@
 using App.Models.Pokemon.Encounter;
 using App.Models.Pokemon.Stats;
 using Microsoft.AspNetCore.Routing.Template;
+using Microsoft.VisualBasic;
 
 namespace App.Services.GameEngine;
 
@@ -39,15 +40,9 @@ static class EncounterService
     public static (string, int) GenPokemonStat(int level, PokemonMetaStat stat)
     {
         string Name = stat.Stat.Name;
-        int FinalValue = (int)Math.Round(new decimal(stat.BaseStat / 10)) * level;
-        if (FinalValue >= 301)
-        {
-            FinalValue = 300;
-        }
-        else if (FinalValue < 0)
-        {
-            FinalValue = 0;
-        }
+        int FinalValue = (int)
+            Math.Round(stat.BaseStat * level / 100m, MidpointRounding.AwayFromZero);
+
         return new(Name, FinalValue);
     }
 }
