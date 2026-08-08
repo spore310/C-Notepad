@@ -1,9 +1,9 @@
-| Section             |                                 Description                                  |       Test Text |
+| Section             |                                 Description                                  |       Test Text     |
 | :------------------ | :--------------------------------------------------------------------------: | --------------: |
 | GetAllPokemonMeta   |                             string graphql query                             |  [Link](#first) |
 | Current Zone Object | representation of the zone levels and stages object to be loaded into memory | [Link](#second) |
 | Desired Zone Object |   desired result of iterative work on zones from **#Current Zone Object**    |  [Link](#third) |
-
+| Desired Poke Api Graphql Conversion| desired conversion when pulling raw poke data into easier format | [Link](#pokeapi-graphql) |
 #Current Graphql query for GetAllPokemonMeta <a id="first"></a>
 
 > Suppose to obtain all the metadat from pokeapi external graphql api to then store in game data
@@ -111,3 +111,18 @@ query GetPokemonMeta($idLimit: Int!) {
 }
 
 ```
+
+---
+
+#Desired Api Nested Structure Conversion <a id="pokeapi-graphql"></a>
+
+| Section              | Current Type                                      | Desired Type                                 |
+|----------------------|---------------------------------------------------|---------------------------------------------------|
+| **Types**            |                                                   |                                                   |
+| Type                 | `{ info: { name: string } }`                      | `Literal("every pokemon type")` → `string`        |
+| Types                | `Type[]`                                          | `type[]`                                          |
+| **Stats**            |                                                   |                                                   |
+| Stat                 | `{ base_stat: int, stat: string }`                | —                                                 |
+| Stats                | `Stat[]`                                          | `{ [key in all stats]: int }`                     |
+
+---
